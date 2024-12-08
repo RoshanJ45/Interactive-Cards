@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cards</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #003630;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .wrapper {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .wrapper .card {
+            width: 150px;
+            height: 150px;
+            border-radius: 7px;
+            background: #00ffd9;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .card.blur {
+            filter: blur(5px);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                cards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.add('blur');
+                    }
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                cards.forEach(otherCard => {
+                    otherCard.classList.remove('blur');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
